@@ -1,0 +1,32 @@
+{
+    "name": "avayabaniya/contact-mail",
+    "description": "Save and save contact email",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Avaya Baniya",
+            "email": "baniyaavaya@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "orchestra/testbench": "^5.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "avayabaniya\\ContactMailer\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "avayabaniya\\ContactMailer\\Tests\\": "tests/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "avayabaniya\\ContactMailer\\Providers\\ContactMailerServiceProvider"
+            ]
+        }
+    }
+}
