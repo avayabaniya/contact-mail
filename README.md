@@ -42,6 +42,13 @@ Now you can include the js file in you blade template file by adding the followi
 ```
 You will also have to set id of the `contact form` as `contact-form` and the id of `submit button` as `contact-submit`.
 
+The contact form's input fields should have name as
+- name
+- email
+- number
+- subject
+- message
+
 ## Testing
 You can test by using the contact form at `contact_form_example.blade.php` having url `{{base_url}}/contact-form-example`
 
