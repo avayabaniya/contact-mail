@@ -1,7 +1,7 @@
 # Laravel contact-mail
 Save and send "contact us" email using AJAX and laravel
 
-##Installation
+## Installation
 You can install this package via composer using this command:
 ```
 require avayabaniya/contact-mail
@@ -16,7 +16,7 @@ php artisan vendor:publish --provider="avayabaniya\ContactMailer\Providers\Conta
 This will create ths packages' config file called `contact-mailer.php` in the `config` directory along with `contact-message.js` file in the `public/contact_mail/js` directory.
  `contact_form_example.blade.php` is also published in the `views` directory which can be used for testing.
  
- ##How to use
+ ## How to use
  After publish the files you will have to run the migration using the following command:
 ```
 php artisan migrate
@@ -42,7 +42,7 @@ Now you can include the js file in you blade template file by adding the followi
 ```
 You will also have to set id of the `contact form` as `contact-form` and the id of `submit button` as `contact-submit`.
 
-##Testing
+## Testing
 You can test by using the contact form at `contact_form_example.blade.php` having url `{{base_url}}/contact-form-example`
 
 or
@@ -52,5 +52,5 @@ run the tests with
 vendor/bin/phpunit
 ```
 
-##Improvement
+## Improvement
 Contributions are welcome through pull requests. Also feel free to create any new issues.
