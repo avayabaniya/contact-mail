@@ -1,0 +1,36 @@
+$("#contact-form").on('submit', function (e) {
+    e.preventDefault();
+    let url = $(this).attr('action');
+
+    $.ajax({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        url: url,
+        method: "POST",
+        data: new FormData(this),
+        dataType: 'JSON',
+        contentType: false,
+        cache: false,
+        processData: false,
+        async: true,
+        beforeSend: function () {
+            $("input[type=text], input[type=email], textarea").prop('disabled', true);
+            $('#contact-submit').text('');
+            $('#contact-submit').append('<i class="fa fa-refresh fa-spin"></i>&nbsp; Sending your message')
+        },
+        success: function (resp) {
+            console.log(resp);
+            $("input[type=text], input[type=email], textarea").prop('disabled', false);
+            $('#contact-form').find("input[type=text], input[type=email], textarea").val("");
+            $('#contact-submit').text('');
+            $('#contact-submit').append(' <i class="fa fa-check"></i><span>&nbsp; Send message</span><i class="icon-right-arrow">')
+        },
+        error: function (resp) {
+            console.log(resp);
+            $("input[type=text], input[type=email], textarea").prop('disabled', false);
+            $('#contact-submit').text('');
+            $('#contact-submit').append(' <i class="fa fa-times"></i><span>&nbsp; Send message</span><i class="icon-right-arrow">')
+        }
+    })
+})

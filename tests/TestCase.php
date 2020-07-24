@@ -4,6 +4,8 @@
 namespace avayabaniya\ContactMailer\Tests;
 
 
+use avayabaniya\ContactMailer\Mail\ContactMessageMail;
+use avayabaniya\ContactMailer\Models\ContactMessage;
 use avayabaniya\ContactMailer\Providers\ContactMailerServiceProvider;
 
 class TestCase extends \Orchestra\Testbench\TestCase
@@ -22,6 +24,9 @@ class TestCase extends \Orchestra\Testbench\TestCase
 
     protected function getEnvironmentSetUp($app)
     {
+        $app['config']->set('contact-mailer.model', ContactMessage::class);
+        $app['config']->set('contact-mailer.receiver', 'baniyaavaya@gmail.com');
+
         $app['config']->set('database.default', 'mysql');
         $app['config']->set('database.connections',
             [

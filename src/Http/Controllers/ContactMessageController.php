@@ -4,6 +4,8 @@
 namespace avayabaniya\ContactMailer\Http\Controllers;
 
 
+use avayabaniya\ContactMailer\Facades\ContactMailer;
+use avayabaniya\ContactMailer\Mail\ContactMessageMail;
 use avayabaniya\ContactMailer\Models\ContactMessage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
@@ -26,12 +28,17 @@ class ContactMessageController extends Controller
             return response()->json(['error' => $validateData->errors()->all()]);
         }
 
-        ContactMessage::create($request->all());
-        $email = config('contact-mailer.receiver');
 
-        //TODO: SEND MAIL
+        $message = ContactMailer::model()->create($request->all());
+        $email = ContactMailer::mailReceiverEmail();
 
-        return response()->json(['success' => 'Contact Send Successfully.']);
+        Mail::to($email)->send(new ContactMessageMail($message));
 
+        return response()->json(['success' => 'Contact message sent successfully.']);
+    }
+
+    public function contactFormExample()
+    {
+        return view('contact_form_example');
     }
 }
