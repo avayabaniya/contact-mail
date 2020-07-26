@@ -4,7 +4,7 @@ Save and send "contact us" email using AJAX and laravel
 ## Installation
 You can install this package via composer using this command:
 ```
-require avayabaniya/contact-mail
+composer require avayabaniya/contact-mail
 ```
 The package will automatically register itself.
 
