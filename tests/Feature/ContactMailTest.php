@@ -70,7 +70,8 @@ class ContactMailTest extends TestCase
         $message = ContactMailer::model()->first();
         $mail = ContactMailer::mailReceiverEmail();
         $mailable = ContactMailer::mailable();
-        $mailerNamespace = config('contact-mailer.mailable');
+        $mailerNamespace = config('contact-mailer.mailable')
+            ?? ContactMessageMail::class;
 
         Mail::to($mail)->send(new $mailable($message));
 
