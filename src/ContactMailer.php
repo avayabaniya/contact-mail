@@ -6,7 +6,9 @@ namespace avayabaniya\ContactMailer;
 
 use avayabaniya\ContactMailer\Exceptions\ContactMessageMailException;
 use avayabaniya\ContactMailer\Exceptions\ContactMessageModelException;
+use avayabaniya\ContactMailer\Models\ContactMessage;
 use Illuminate\Database\Eloquent\Model;
+use ReflectionClass;
 
 class ContactMailer
 {
@@ -14,9 +16,11 @@ class ContactMailer
     {
         $model = config('contact-mailer.model');
         if (class_exists($model)) {
-            //if ($model instanceof Model) {
+            $reflectorClass = new ReflectionClass($model);
+            $model = $reflectorClass->newInstanceWithoutConstructor();
+            if ($model instanceof Model) {
                 return new $model;
-            //}
+            }
         }
 
         throw new ContactMessageModelException('Model to save messages to database not found. Verify the model in config file');
@@ -31,9 +35,11 @@ class ContactMailer
     {
         $mailable = config('contact-mailer.mailable');
         if (class_exists($mailable)) {
-            //if ($mailable instanceof \Illuminate\Mail\Mailable) {
+            $reflectorClass = new ReflectionClass($mailable);
+            $mailable = $reflectorClass->newInstanceWithoutConstructor();
+            if ($mailable instanceof \Illuminate\Mail\Mailable) {
                 return $mailable;
-            //}
+            }
         }
 
         throw new ContactMessageMailException('Mailable to send mail not found. Verify the mailable class in config file');

@@ -26,6 +26,7 @@ class TestCase extends \Orchestra\Testbench\TestCase
     {
         $app['config']->set('contact-mailer.model', ContactMessage::class);
         $app['config']->set('contact-mailer.receiver', 'baniyaavaya@gmail.com');
+        $app['config']->set('contact-mailer.mailable', ContactMessageMail::class);
 
         $app['config']->set('database.default', 'mysql');
         $app['config']->set('database.connections',

@@ -53,4 +53,29 @@ class ContactMailTest extends TestCase
             return $mail->message->email == $message->email && $mail->message->number == $message->number;
         });
     }
+
+    /** @test **/
+    public function send_contact_message_mail_from_config()
+    {
+        $this->post(route('send.contact.message'), [
+            'name' => 'Avaya Baniya',
+            'number' => '9860089363',
+            'email' => 'baniyaavaya@gmail.com',
+            'subject' => 'Contact message mail',
+            'message' => 'test'
+        ]);
+
+        Mail::fake();
+
+        $message = ContactMailer::model()->first();
+        $mail = ContactMailer::mailReceiverEmail();
+        $mailable = ContactMailer::mailable();
+        $mailerNamespace = config('contact-mailer.mailable');
+
+        Mail::to($mail)->send(new $mailable($message));
+
+        Mail::assertSent($mailerNamespace, function ($mail) use ($message) {
+            return $mail->message->email == $message->email && $mail->message->number == $message->number;
+        });
+    }
 }

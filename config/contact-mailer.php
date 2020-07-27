@@ -1,10 +1,12 @@
 <?php
 
+use avayabaniya\ContactMailer\Mail\ContactMessageMail;
 use avayabaniya\ContactMailer\Models\ContactMessage;
 
 return [
-    'model' => ContactMessage::class,
+    'model' => env('CONTACT_MAIL_MODEL', ContactMessage::class),
 
     'receiver' => env('CONTACT_MAIL_RECEIVER', 'baniyaavaya@gmail.com'),
 
+    'mailable' => env('CONTACT_MAIL_MAILABLE', ContactMessageMail::class)
 ];
