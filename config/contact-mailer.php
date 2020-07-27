@@ -8,5 +8,5 @@ return [
 
     'receiver' => env('CONTACT_MAIL_RECEIVER', 'baniyaavaya@gmail.com'),
 
-    //'mailable' => env('CONTACT_MAIL_MAILABLE', ContactMessageMail::class)
+    'mailable' => env('CONTACT_MAIL_MAILABLE', ContactMessageMail::class)
 ];
