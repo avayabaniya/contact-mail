@@ -25,7 +25,7 @@ class ContactMessageController extends Controller
         ]);
 
         if ($validateData->fails()) {
-            return response()->json(['error' => $validateData->errors()->all()]);
+            return response()->json(['error' => $validateData->errors()->all()], 400);
         }
 
 
