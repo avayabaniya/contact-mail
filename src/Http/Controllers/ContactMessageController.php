@@ -33,7 +33,9 @@ class ContactMessageController extends Controller
         $email = ContactMailer::mailReceiverEmail();
         $mailable = ContactMailer::mailable();
 
-        Mail::to($email)->send(new $mailable($message));
+        $emails = explode(",", $email);
+
+        Mail::to($emails)->send(new $mailable($message));
 
         return response()->json(['success' => 'Contact message sent successfully.']);
     }

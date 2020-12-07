@@ -40,9 +40,11 @@ Now you can include the js file in you blade template file by adding the followi
 ```
 <script src="{{ asset('contact_mail/js/contact-message.js') }}"></script>
 ```
+Set the form's `method` attribute as `POST` and `action` as `{{ route('send.contact.message') }}`
+
 You will also have to set id of the `contact form` as `contact-form` and the id of `submit button` as `contact-submit`.
 
-The contact form's input fields should have name as
+The contact form's input fields should have name attributes set as
 - name
 - email
 - number
